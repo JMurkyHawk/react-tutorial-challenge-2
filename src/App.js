@@ -1,25 +1,70 @@
-import logo from './logo.svg';
 import './App.css';
+import Content from './Content';
+import Navigation from './Navigation';
+import { useState, useEffect } from 'react';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const API_URL = "https://jsonplaceholder.typicode.com/";
+
+    const [items, setItems] = useState([]);
+    const [endPoint, setEndPoint] = useState('users');
+    const [fetchError, setFetchError] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
+
+    const fetchItems = async (useEndPoint) => {
+        try {
+            const response = await fetch(`${API_URL}/${useEndPoint}`);
+            if (!response.ok) throw Error(`Didn't receive expected data`);
+            const listItems = await response.json();
+            setItems(listItems);
+            setFetchError(null);
+        } catch (err) {
+            setFetchError(err.message);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        fetchItems(endPoint);
+    }, [endPoint]);
+
+    const getUsers = () => {
+        setEndPoint('users');
+    };
+
+    const getPosts = () => {
+        setEndPoint('posts');
+    };
+    
+    const getComments = () => {
+        setEndPoint('comments');
+    };
+
+    return (
+        <div className="App">
+            <main>                
+                <Navigation 
+                    endPoint={endPoint}
+                    getUsers={getUsers}
+                    getPosts={getPosts}
+                    getComments={getComments}
+                />
+                {fetchError && 
+                    <p style={{color: 'red'}}>
+                        {`Error: ${fetchError}`}
+                    </p>
+                }
+                {isLoading && <p>Loading items...</p>}
+                {!fetchError && !isLoading && 
+                    <Content 
+                        items={items}
+                    />
+                }
+                
+            </main>
+        </div>
+    );
 }
 
 export default App;

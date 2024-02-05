@@ -1,5 +1,4 @@
-import './App.css';
-import Content from './Content';
+import Table from './Table';
 import Navigation from './Navigation';
 import { useState, useEffect } from 'react';
 
@@ -13,7 +12,7 @@ function App() {
 
     const fetchItems = async (useEndPoint) => {
         try {
-            const response = await fetch(`${API_URL}/${useEndPoint}`);
+            const response = await fetch(`${API_URL}${useEndPoint}`);
             if (!response.ok) throw Error(`Didn't receive expected data`);
             const listItems = await response.json();
             setItems(listItems);
@@ -50,18 +49,19 @@ function App() {
                     getPosts={getPosts}
                     getComments={getComments}
                 />
-                {fetchError && 
-                    <p style={{color: 'red'}}>
-                        {`Error: ${fetchError}`}
-                    </p>
-                }
-                {isLoading && <p>Loading items...</p>}
-                {!fetchError && !isLoading && 
-                    <Content 
-                        items={items}
-                    />
-                }
-                
+                <section>
+                    {fetchError && 
+                        <p style={{color: 'red'}}>
+                            {`Error: ${fetchError}`}
+                        </p>
+                    }
+                    {isLoading && <p>Loading items...</p>}
+                    {!fetchError && !isLoading && 
+                        <Table 
+                            items={items}
+                        />
+                    }
+                </section>
             </main>
         </div>
     );

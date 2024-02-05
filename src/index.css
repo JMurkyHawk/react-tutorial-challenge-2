@@ -1,13 +1,123 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+html {
+    font-size: 16px;
+    width: 100%;
+}
+
+body {
+    min-height: 100vh;
+    font-family: 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    width: 100%;
+}
+
+nav {
+    margin: 0 0 1rem 0;
+    z-index: 10;
+
+    height: 2em;
+
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+}
+
+nav ul {
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex: 1 1 auto;
+}
+
+nav ul li {
+    list-style-type: none;
+
+    flex-grow: 1;
+}
+
+nav ul li:first-of-type button {
+    border-left: none;
+}
+
+nav ul li:last-of-type button {
+    border-right: none;
+}
+
+nav button {
+    background: #eeeeee;
+    border: 1px solid #333333;
+    border-left: none;
+    border-radius: 0;
+    color: #111111;
+    cursor: pointer;
+    font-size: 1.1rem;
+    padding: .5em 1em;
+    width: 100%;
+}
+
+nav button:focus,
+nav button:hover {
+    background: #dddddd;
+}
+
+nav button.active,
+nav button.active:focus,
+nav button.active:hover {
+    background: #111111;
+    border: 1px solid #111111;
+    border-left: none;
+    color: #efefef;
+}
+
+nav button:disabled {
+    cursor: not-allowed;
+}
+
+section {
+    margin: 3.5rem 0 0 0;
+    text-align: left;
+}
+
+section table {
+    background: #fdfdfd;
+}
+
+section table thead:after {
+    content: '';
+    background: #fdfdfd;
+    z-index: 1;
+
+    position: fixed;
+    height: 2.5rem;
+    top: calc(2.5rem - 3px);
+    right: 0;
+    left: 0;
+}
+
+section table thead th {
+    background: azure;
+    border: 1px solid #111111;
+    border-bottom: 2px solid #111111;
+    padding: .5rem .25rem;
+    z-index: 2;
+    
+    position: sticky;
+    top: calc(2.5rem + 3px);
+}
+
+section table tr td {
+    border: 1px double #111111;
+    padding: .5rem .25rem;
 }

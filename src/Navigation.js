@@ -1,26 +1,30 @@
-import React from 'react'
+import React from 'react';
+import NavButton from './NavButton';
 
 const Navigation = ({endPoint, getUsers, getPosts, getComments}) => {
     return (
         <nav>
             <ul>
                 <li>
-                    <button 
-                        onClick={getUsers}
-                        className={endPoint === 'users' ? 'active' : null}
-                    >users</button>
+                    <NavButton 
+                        endPoint={endPoint}
+                        clickAction={getUsers}
+                        label='users'
+                    />
                 </li>
                 <li>
-                    <button 
-                        onClick={getPosts}
-                        className={endPoint === 'posts' ? 'active' : null}
-                    >posts</button>
+                    <NavButton 
+                        endPoint={endPoint}
+                        clickAction={getPosts}
+                        label='posts'
+                    />
                 </li>
                 <li>
-                    <button 
-                        onClick={getComments}
-                        className={endPoint === 'comments' ? 'active' : null}
-                    >comments</button>
+                    <NavButton 
+                        endPoint={endPoint}
+                        clickAction={getComments}
+                        label='comments'
+                    />
                 </li>
             </ul>
         </nav>

@@ -8,7 +8,7 @@ const NavButton = ({ endPoint, clickAction, label }) => {
         <button 
             onClick={clickAction}
             className={current ? 'active' : null}
-            disabled={current ? true : false}
+            disabled={current}
             title={current ? 'Currently viewing' : `Get ${label} data`}
         >{label}</button>
     )

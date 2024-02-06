@@ -20,7 +20,7 @@ body {
 }
 
 nav {
-    margin: 0 0 1rem 0;
+    margin: 0 2px 1rem 0;
     z-index: 10;
 
     height: 2em;
@@ -64,12 +64,14 @@ nav button {
     cursor: pointer;
     font-size: 1.1rem;
     padding: .5em 1em;
+    position: relative;
     width: 100%;
 }
 
 nav button:focus,
 nav button:hover {
     background: #dddddd;
+    z-index: 10;
 }
 
 nav button.active,

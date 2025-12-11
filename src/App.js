@@ -1,10 +1,17 @@
 import { useState, useEffect } from 'react';
+import Form from './Form';
 import Button from './Button';
 
 const App = () => {
     const API_URL = 'https://jsonplaceholder.typicode.com/';
     const [reqType, setReqType] = useState('users');
     const [items, setItems] = useState([]);
+
+    const endPoints = [
+        {item: 'users'}, 
+        {item: 'posts'}, 
+        {item: 'comments'}
+    ];
 
     useEffect(() => {
         
@@ -24,33 +31,11 @@ const App = () => {
 
     return (
         <div className="App">
-            <form onSubmit={(e) => e.preventDefault() }>
-                <nav>
-                    <ul>
-                        <li>
-                            <Button 
-                                reqType={reqType}
-                                setReqType={setReqType}
-                                data='users'
-                            />
-                        </li>
-                        <li>
-                            <Button 
-                                reqType={reqType}
-                                setReqType={setReqType}
-                                data='posts'
-                            />
-                        </li>
-                        <li>
-                            <Button 
-                                reqType={reqType}
-                                setReqType={setReqType}
-                                data='comments'
-                            />
-                        </li>
-                    </ul>
-                </nav>
-            </form>
+            <Form 
+                reqType={reqType}
+                setReqType={setReqType}
+                endPoints={endPoints}
+            />
 
             <main>
                 <ul>

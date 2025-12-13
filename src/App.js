@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import Form from './Form';
-import Button from './Button';
+import Table from './Table';
 
 const App = () => {
     const API_URL = 'https://jsonplaceholder.typicode.com/';
@@ -21,7 +21,7 @@ const App = () => {
                 const data = await response.json();
                 setItems(data);
             } catch (err) {
-                console.error(err);
+                console.log(err);
             }
         }
 
@@ -37,15 +37,8 @@ const App = () => {
                 endPoints={endPoints}
             />
 
-            <main>
-                <ul>
-                    {items.map((item) => (
-                        <li key={item.id}>
-                            {JSON.stringify(item)}
-                        </li>
-                    ))}
-                </ul>
-            </main>
+            <Table items={items} />
+
         </div>
     )
 }

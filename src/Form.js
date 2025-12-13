@@ -7,9 +7,8 @@ const Form = ({ reqType, setReqType, endPoints }) => {
             <nav>
                 <ul>
                     {endPoints.map((endPoint, i) => (
-                        <li>
+                        <li key={i}>
                             <Button 
-                                key={i}
                                 reqType={reqType}
                                 setReqType={setReqType}
                                 data={endPoint.item}
@@ -22,4 +21,4 @@ const Form = ({ reqType, setReqType, endPoints }) => {
     )
 }
 
-export default Form
+export default Form;

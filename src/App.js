@@ -8,6 +8,7 @@ const App = () => {
 
     const [apiEndPoint, setApiEndPoint] = useState('users');
     const [apiData, setApiData] = useState({});
+    const [fetchError, setFetchError] = useState(null);
 
     useEffect(() => {
         const fetchItems = async () => {
@@ -16,8 +17,10 @@ const App = () => {
                 if (!response.ok) throw Error('Did not receive expected data');
                 const listItems = await response.json();
                 setApiData(listItems);
+                setFetchError(null);
             } catch (err) {
-                console.log(`${err}`);
+                console.log(`TEST : ${err}`)
+                setFetchError(err.message);
             }
         }
 
@@ -41,7 +44,7 @@ const App = () => {
                             ))}
                         </ul>
                     ) : (
-                        <p>No data found</p>
+                        <p style={{'color': 'red'}}>{`Error: ${fetchError}`}</p>
                     )}
             </section>
         </main>

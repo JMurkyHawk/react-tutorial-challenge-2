@@ -4,9 +4,9 @@ const Button = ({ setApiEndPoint, item }) => {
     return (
         <button
             onClick={(e) => {
-                setApiEndPoint(item);
+                setApiEndPoint(item.endpoint);
             }}
-        >{item}</button>
+        >{item.title}</button>
     )
 }
 

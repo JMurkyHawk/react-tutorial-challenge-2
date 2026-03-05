@@ -4,7 +4,18 @@ import { useEffect, useState } from 'react';
 
 const App = () => {
     const API_URL = "https://jsonplaceholder.typicode.com";
-    const endPoints = ['users', 'posts', 'comments'];
+    const endPoints = [
+        {
+            endpoint: 'users',
+            title: 'users'
+        }, { 
+            endpoint: 'posts',
+            title: 'posts' 
+        }, {
+            endpoint: 'comments',
+            title: 'comments'
+        }
+    ];
 
     const [apiEndPoint, setApiEndPoint] = useState('users');
     const [apiData, setApiData] = useState({});
@@ -19,7 +30,6 @@ const App = () => {
                 setApiData(listItems);
                 setFetchError(null);
             } catch (err) {
-                console.log(`TEST : ${err}`)
                 setFetchError(err.message);
             }
         }

@@ -1,6 +1,7 @@
 import React from 'react';
 import Form from './Form';
 import List from './List';
+import Table from './Table';
 import { useEffect, useState } from 'react';
 
 const App = () => {
@@ -46,7 +47,7 @@ const App = () => {
                 setApiEndpoint={setApiEndpoint} 
                 endpoints={endpoints} 
             />
-            <List 
+            <Table 
                 apiData={apiData} 
                 fetchError={fetchError} 
             />

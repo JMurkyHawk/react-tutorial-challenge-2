@@ -1,10 +1,11 @@
 import React from 'react';
 import Form from './Form';
+import List from './List';
 import { useEffect, useState } from 'react';
 
 const App = () => {
     const API_URL = "https://jsonplaceholder.typicode.com";
-    const endPoints = [
+    const endpoints = [
         {
             endpoint: 'users',
             title: 'users'
@@ -17,14 +18,14 @@ const App = () => {
         }
     ];
 
-    const [apiEndPoint, setApiEndPoint] = useState('users');
-    const [apiData, setApiData] = useState({});
+    const [apiEndpoint, setApiEndpoint] = useState('users');
+    const [apiData, setApiData] = useState([]);
     const [fetchError, setFetchError] = useState(null);
 
     useEffect(() => {
         const fetchItems = async () => {
             try {
-                const response = await fetch(`${API_URL}/${apiEndPoint}`);
+                const response = await fetch(`${API_URL}/${apiEndpoint}`);
                 if (!response.ok) throw Error('Did not receive expected data');
                 const listItems = await response.json();
                 setApiData(listItems);
@@ -35,28 +36,20 @@ const App = () => {
         }
 
         fetchItems();
-    }, [apiEndPoint]);
+    }, [apiEndpoint]);
 
 
     return (
         <main>
             <Form 
-                setApiEndPoint={setApiEndPoint} 
-                endPoints={endPoints}
+                apiEndpoint={apiEndpoint} 
+                setApiEndpoint={setApiEndpoint} 
+                endpoints={endpoints} 
             />
-            <section>
-                    {apiData.length ? (
-                        <ul>
-                            {apiData.map((item) => (
-                                <li key={item.id}>
-                                    {JSON.stringify(item)}
-                                </li>
-                            ))}
-                        </ul>
-                    ) : (
-                        <p style={{'color': 'red'}}>{`Error: ${fetchError}`}</p>
-                    )}
-            </section>
+            <List 
+                apiData={apiData} 
+                fetchError={fetchError} 
+            />
         </main>
     )
 }

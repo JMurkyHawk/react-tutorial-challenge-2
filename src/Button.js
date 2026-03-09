@@ -1,10 +1,12 @@
 import React from 'react'
 
-const Button = ({ setApiEndPoint, item }) => {
+const Button = ({ apiEndpoint, setApiEndpoint, item }) => {
     return (
-        <button
+        <button 
+            className={item.endpoint === apiEndpoint ? 'selected' : null }
+            type="button" 
             onClick={(e) => {
-                setApiEndPoint(item.endpoint);
+                setApiEndpoint(item.endpoint);
             }}
         >{item.title}</button>
     )

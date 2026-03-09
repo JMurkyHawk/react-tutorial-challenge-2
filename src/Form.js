@@ -1,14 +1,15 @@
 import React from 'react';
 import Button from './Button';
 
-const Form = ({ setApiEndPoint, endPoints }) => {
+const Form = ({ apiEndpoint, setApiEndpoint, endpoints }) => {
     return (
         <form onSubmit={(e) => e.preventDefault()}>
             <ul>
-                {endPoints.map((item, i) => (
+                {endpoints.map((item, i) => (
                     <li key={i}>
                         <Button 
-                            setApiEndPoint={setApiEndPoint} 
+                            apiEndpoint={apiEndpoint} 
+                            setApiEndpoint={setApiEndpoint} 
                             item={item} 
                         />
                     </li>
